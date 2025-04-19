@@ -1,0 +1,17 @@
+version: "3"
+name: inuchat_demo
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        GITHUB_URL: https://github.com/bartb142/inuchat_demo.git
+        PORT: 8503
+    container_name: inuchat_demo
+    hostname: inuchat_demo
+    command: ["streamlit", "run", "app/main.py", "--server.port=8503", "--server.address=0.0.0.0"]
+    ports:
+      - 8503:8503
+    volumes:
+      - ./app:/app
