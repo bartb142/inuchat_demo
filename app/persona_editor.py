@@ -1,8 +1,5 @@
 import streamlit as st
-from app.utils import load_persona, save_persona
-
-st.set_page_config(page_title="ペルソナ編集", page_icon="✏️")
-st.title("✏️ ペルソナ編集ツール")
+from utils import load_persona, save_persona
 
 text = load_persona()
 new_text = st.text_area("現在のペルソナ", value=text, height=300)

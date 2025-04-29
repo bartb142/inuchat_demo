@@ -1,4 +1,3 @@
 streamlit
 litellm
 anthropic
-python-dotenv

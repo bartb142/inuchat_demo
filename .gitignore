@@ -158,5 +158,8 @@ cython_debug/
 *.xls
 *.txt
 
+# macOS
+.DS_Store
+
 # Streamlit secrets
 secrets.toml
