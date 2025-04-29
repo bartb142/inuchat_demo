@@ -26,6 +26,23 @@ This is a fun AI chatbot demo app built with **Streamlit** and **Anthropic Claud
 
 ---
 
+ ## File Structure
+ ```
+ dog-chatbot-app/
+├── app/
+│   ├── main.py               # Main chat UI
+│   ├── utils.py              # Image processing + API calls
+│   ├── persona_editor.py     # Hidden persona editing page
+│   ├── persona.txt           # Generated persona (editable)
+│   └── requirements.txt
+├── .streamlit/
+│   └── secrets.toml          # 🔐 Your API key (DO NOT COMMIT)
+├── Dockerfile
+├── docker-compose.yml
+└── README.md
+```
+
+
 ## 🚀 How to Run
 
 ### 1. Clone the Repository
@@ -52,3 +69,8 @@ Make sure you use a Claude 3 model that supports vision, e.g. claude-3-opus-2024
 ```bash
 docker-compose up --build
 ```
+Access the app at:
+
+🗨️ Chatbot: http://localhost:8503
+
+
