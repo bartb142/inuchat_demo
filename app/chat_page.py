@@ -8,24 +8,8 @@ import litellm
 litellm.model_alias_map = {"chat": "anthropic/claude-3-opus-20240229"}
 litellm.api_key = st.secrets["ANTHROPIC_API_KEY"]
 
-
-if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []
-
 if "persona" not in st.session_state:
     st.session_state.persona = None
-
-if "avatar_base64" not in st.session_state:
-    st.session_state.avatar_base64 = None
-
-if "name" not in st.session_state:
-    st.session_state.name = None
-
-if st.session_state.persona is None:
-    try:
-        st.session_state.persona = load_persona()
-    except FileNotFoundError:
-        st.warning("先に画像と名前でペルソナを生成してください。")
 
 if st.session_state.persona:
     st.markdown("### チャット開始")
@@ -56,3 +40,6 @@ if st.session_state.persona:
         st.session_state.chat_history.append({"role": "assistant", "content": reply})
         with st.chat_message("assistant",avatar=avatar):
             st.markdown(reply)
+else:
+    st.info('ペルソナを作成してください', icon="ℹ️")
+    st.switch_page("persona_setup.py")
