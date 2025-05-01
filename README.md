@@ -28,18 +28,20 @@ This is a fun AI chatbot demo app built with **Streamlit** and **Anthropic Claud
 
  ## File Structure
  ```
- dog-chatbot-app/
-├── app/
-│   ├── main.py               # Main chat UI
-│   ├── utils.py              # Image processing + API calls
-│   ├── persona_editor.py     # Hidden persona editing page
-│   ├── persona.txt           # Generated persona (editable)
-│   └── requirements.txt
+inuchat_demo/
+├── app
+│   ├── chat_page.py
+│   ├── main.py
+│   ├── persona_editor.py
+│   ├── persona_setup.py
+│   ├── persona.txt
+│   └── utils.py
 ├── .streamlit/
 │   └── secrets.toml          # 🔐 Your API key (DO NOT COMMIT)
-├── Dockerfile
 ├── docker-compose.yml
-└── README.md
+├── Dockerfile
+├── README.md
+└── requirements.txt
 ```
 
 
