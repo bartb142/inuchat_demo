@@ -38,13 +38,3 @@ def generate_persona(image_base64: str, media_type: str, name: str) -> str:
         ]
     )
     return msg.content[0].text.strip()
-
-persona_path = 'persona.txt'
-
-def save_persona(text: str, path=persona_path):
-    with open(path, "w", encoding="utf-8") as f:
-        f.write(text)
-
-def load_persona(path=persona_path) -> str:
-    with open(path, "r", encoding="utf-8") as f:
-        return f.read().strip()
