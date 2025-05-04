@@ -41,5 +41,4 @@ if st.session_state.persona:
         with st.chat_message("assistant",avatar=avatar):
             st.markdown(reply)
 else:
-    st.info('ペルソナを作成してください', icon="ℹ️")
     st.switch_page("persona_setup.py")
