@@ -21,7 +21,6 @@ with st.container():
         image_base64 = image_to_base64(image_file)
         with st.spinner("ペルソナを生成中..."):
             persona = generate_persona(image_base64, media_type, name)
-            save_persona(persona)
             st.session_state.persona = persona
             st.session_state.name = name
             st.session_state.avatar_base64 = image_base64

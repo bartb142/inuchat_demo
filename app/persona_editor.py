@@ -1,5 +1,4 @@
 import streamlit as st
-from utils import load_persona, save_persona
 
 if "persona" not in st.session_state:
     st.session_state.persona = None
