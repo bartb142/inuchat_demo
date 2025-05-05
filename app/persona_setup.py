@@ -1,5 +1,5 @@
 import streamlit as st
-from utils import generate_persona, save_persona, image_to_base64
+from utils import generate_persona, image_to_base64
 
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
