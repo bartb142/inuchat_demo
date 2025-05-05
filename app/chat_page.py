@@ -1,5 +1,4 @@
 import streamlit as st
-from utils import generate_persona, save_persona, load_persona, image_to_base64
 import litellm
 
 
