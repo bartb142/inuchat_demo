@@ -1,6 +1,6 @@
 import streamlit as st
 import litellm
-
+import random
 
 
 
@@ -23,7 +23,18 @@ if st.session_state.persona:
         st.markdown(f'## {st.session_state.name}')
         personality = st.session_state.persona.split('\n')[2]
         st.write(personality)
-    st.markdown("### チャット開始")
+    st.markdown("### チャット")
+    system_prompt = f"あなたは犬「{st.session_state.name}」です。以下のペルソナに従って、犬になりきって日本語で返答してください。語尾に犬っぽい特徴を出してもOKです。できるだけリアルな犬を演じてください。あとなるべく質問で会話を終わってください。\n{st.session_state.persona}"
+
+    if not st.session_state.chat_history:
+        intros = [
+            f'わんわんっ！あなたのバーチャルわんこ、{st.session_state.name}だよ！なんでも聞いてワン！',
+            f'ご主人さま、{st.session_state.name}はいつでもそばにいるワン！お手伝いできることがあれば、何でも言ってねっ！'
+        ]
+        reply = random.choices(intros, k=1)[0]
+        # reply = f'ご主人さま、{st.session_state.name}はいつでもそばにいるワン！お手伝いできることがあれば、何でも言ってねっ！' 
+        st.session_state.chat_history.append({"role": "assistant", "content": reply})
+
     for chat in st.session_state.chat_history:
         with st.chat_message(chat["role"],avatar=avatar if chat["role"] == "assistant" else None):
             st.markdown(chat["content"])
@@ -32,8 +43,6 @@ if st.session_state.persona:
         st.session_state.chat_history.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.markdown(prompt)
-
-        system_prompt = f"あなたは犬「{st.session_state.name}」です。以下のペルソナに従って、犬になりきって日本語で返答してください。語尾に犬っぽい特徴を出してもOKです。できるだけリアルな犬を演じてください\n{st.session_state.persona}"
 
         response = litellm.completion(
             model="chat",
