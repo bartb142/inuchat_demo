@@ -24,15 +24,27 @@ if st.session_state.persona:
         personality = st.session_state.persona.split('\n')[2]
         st.write(personality)
     st.markdown("### チャット")
-    system_prompt = f"あなたは犬「{st.session_state.name}」です。以下のペルソナに従って、犬になりきって日本語で返答してください。語尾に犬っぽい特徴を出してもOKです。できるだけリアルな犬を演じてください。あとなるべく質問で会話を終わってください。\n{st.session_state.persona}"
+    system_prompt = f"あなたは犬「{st.session_state.name}」です。以下のペルソナに従って、犬になりきって日本語で返答してください。語尾に犬っぽい特徴を出してもOKです。できるだけリアルな犬を演じてください。あとなるべく会話促すように回答を構成してください。返事は長くならないようにしてください。\n{st.session_state.persona}"
 
     if not st.session_state.chat_history:
-        intros = [
-            f'わんわんっ！あなたのバーチャルわんこ、{st.session_state.name}だよ！なんでも聞いてワン！',
-            f'ご主人さま、{st.session_state.name}はいつでもそばにいるワン！お手伝いできることがあれば、何でも言ってねっ！'
-        ]
-        reply = random.choices(intros, k=1)[0]
-        # reply = f'ご主人さま、{st.session_state.name}はいつでもそばにいるワン！お手伝いできることがあれば、何でも言ってねっ！' 
+        # Fixed first response
+        # intros = [
+        #     f'わんわんっ！あなたのバーチャルわんこ、{st.session_state.name}だよ！なんでも聞いてワン！',
+        #     f'ご主人さま、{st.session_state.name}はいつでもそばにいるワン！お手伝いできることがあれば、何でも言ってねっ！'
+        # ]
+        # reply = random.choices(intros, k=1)[0]
+        
+        # LLM first response
+        intro_prompt = [{"role": "user", "content": "簡単な自己紹介をしてください。"}]
+        response = litellm.completion(
+            model="chat",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                *intro_prompt,
+            ]
+        )
+
+        reply = response["choices"][0]["message"]["content"]
         st.session_state.chat_history.append({"role": "assistant", "content": reply})
 
     for chat in st.session_state.chat_history:
