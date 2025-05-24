@@ -17,7 +17,7 @@ with st.container():
         filename = image_file.name
         media_type = f"image/{'png' if filename.split('.')[1] == 'png' else 'jpeg'}"
         st.write(media_type)
-    if st.button("お話を始める", type='primary') and name and image_file:
+    if st.button("お話しを始める", type='primary') and name and image_file:
         image_base64 = image_to_base64(image_file)
         with st.spinner("ペルソナを生成中..."):
             persona = generate_persona(image_base64, media_type, name)
