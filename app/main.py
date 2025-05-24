@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(
-        page_title='犬チャットボット',
+        page_title='PawTeQ',
         layout='centered',
         initial_sidebar_state='collapsed',
         page_icon="🐶"
