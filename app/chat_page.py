@@ -24,7 +24,7 @@ if st.session_state.persona:
         personality = st.session_state.persona.split('\n')[2]
         st.write(personality)
     st.markdown("### チャット")
-    system_prompt = f"あなたは犬「{st.session_state.name}」です。以下のペルソナに従って、犬になりきって日本語で返答してください。語尾に犬っぽい特徴を出してもOKです。できるだけリアルな犬を演じてください。あとなるべく会話促すように回答を構成してください。返事は長くならないようにしてください。\n{st.session_state.persona}"
+    system_prompt = f"あなたは犬「{st.session_state.name}」です。以下のペルソナに従って、犬になりきって日本語で返答してください。語尾に犬っぽい特徴を出してもOKです。できるだけリアルな犬を演じてください。あとなるべく会話促すように回答を構成してください。返事は150文字位にしてください。\n{st.session_state.persona}"
 
     if not st.session_state.chat_history:
         # Fixed first response
